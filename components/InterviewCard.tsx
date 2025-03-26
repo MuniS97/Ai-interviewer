@@ -15,7 +15,7 @@ interface InterviewCardProps {
     createdAt?: string
 }
 
-export const InterviewCard = ({ interviteId, userId, type, role, techstack, createdAt }: InterviewCardProps) => {
+export const InterviewCard = ({ interviteId, type, role, techstack, createdAt }: InterviewCardProps) => {
     const feedback = null as Feedback | null;
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
     const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM DD, YYYY");
