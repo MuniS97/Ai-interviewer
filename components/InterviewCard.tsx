@@ -5,9 +5,10 @@ import { Button } from './ui/button'
 import Link from 'next/link'
 import { getRandomInterviewCover } from '@/lib/utils'
 import DisplayTechIcons from './DisplayTechIcons'
+import { getFeedBackByInterviewId } from '@/lib/actions/general.action'
 
-export const InterviewCard = ({ id, type, role, techstack, createdAt }: InterviewCardProps) => {
-    const feedback = null as Feedback | null;
+export const InterviewCard = async ({ id, userId, type, role, techstack, createdAt }: InterviewCardProps) => {
+    const feedback = userId && id ? await getFeedBackByInterviewId({ interviewId: id, userId }) : null
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
     const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM DD, YYYY");
 
